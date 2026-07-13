@@ -5,7 +5,7 @@
 class CardManager {
     constructor() {
         this.slots = [];
-        this.numSlots = 5;
+        this.numSlots = 4;
         this.cardTypes = [1, 2, 3, 4, 5, 6, 7, 8, 9, -1, 1]; // +1 appears as 1 (duplicate 1 for balance)
         this.slotsElement = document.getElementById('cardSlots');
         this.initSlots();
@@ -131,9 +131,16 @@ class CardManager {
     }
 
     /**
-     * Refill empty slots
+     * Check if all slots are empty
      */
-    refillSlots() {
+    allSlotsEmpty() {
+        return this.slots.every(card => card === null);
+    }
+
+    /**
+     * Refill all empty slots at once
+     */
+    refillAllEmptySlots() {
         for (let i = 0; i < this.numSlots; i++) {
             if (this.slots[i] === null) {
                 this.slots[i] = this.generateRandomCard();

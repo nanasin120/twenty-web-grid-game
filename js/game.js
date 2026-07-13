@@ -17,7 +17,6 @@ class GameManager {
      */
     init() {
         this.setupEventListeners();
-        this.refillCards();
     }
 
     /**
@@ -28,13 +27,6 @@ class GameManager {
         if (restartBtn) {
             restartBtn.addEventListener('click', () => this.restart());
         }
-    }
-
-    /**
-     * Refill card slots
-     */
-    refillCards() {
-        this.cardManager.refillSlots();
     }
 
     /**
@@ -57,8 +49,10 @@ class GameManager {
             this.updateScore();
         }
 
-        // Refill empty slots
-        this.refillCards();
+        // Refill empty slots only when all slots are empty
+        if (this.cardManager.allSlotsEmpty()) {
+            this.cardManager.refillAllEmptySlots();
+        }
 
         // Check game over condition
         setTimeout(() => this.checkGameOver(), 500);

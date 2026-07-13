@@ -63,7 +63,7 @@ class DragDropManager {
 
         if (card === null) return;
 
-        this.startDrag(card, slotIndex, e.clientX, e.clientY);
+        this.startDrag(card, slotIndex, e.clientX, e.clientY, cardElement);
     }
 
     /**
@@ -82,13 +82,13 @@ class DragDropManager {
         if (card === null) return;
 
         const touch = e.touches[0];
-        this.startDrag(card, slotIndex, touch.clientX, touch.clientY);
+        this.startDrag(card, slotIndex, touch.clientX, touch.clientY, cardElement);
     }
 
     /**
      * Start dragging
      */
-    startDrag(card, slotIndex, clientX, clientY) {
+    startDrag(card, slotIndex, clientX, clientY, cardElement) {
         this.draggedCard = card;
         this.draggedSlot = slotIndex;
 
@@ -106,16 +106,16 @@ class DragDropManager {
 
         document.body.appendChild(this.draggedElement);
 
-        // Calculate offset
-        const slot = document.querySelector(`[data-slot-index="${slotIndex}"]`);
-        const rect = slot.getBoundingClientRect();
-        this.offsetX = clientX - rect.left;
-        this.offsetY = clientY - rect.top;
+        // Calculate offset to center the card on mouse cursor
+        const cardRect = cardElement.getBoundingClientRect();
+        this.offsetX = clientX - cardRect.left - cardRect.width / 2;
+        this.offsetY = clientY - cardRect.top - cardRect.height / 2;
 
         // Update position
         this.updateDragPosition(clientX, clientY);
 
         // Mark slot as active
+        const slot = document.querySelector(`[data-slot-index="${slotIndex}"]`);
         slot.classList.add('active');
 
         soundManager.playPlace();
