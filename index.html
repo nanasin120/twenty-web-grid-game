@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twenty - Web Grid Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">Twenty</h1>
+            <div class="header-controls">
+                <div class="score-display">
+                    <span class="score-label">Score:</span>
+                    <span class="score-value" id="score">0</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Game Area -->
+        <main class="game-area">
+            <!-- Grid -->
+            <section class="grid-section">
+                <div class="grid" id="grid">
+                    <!-- 4x4 Grid cells will be generated here -->
+                </div>
+            </section>
+
+            <!-- Card Slots -->
+            <section class="card-slots-section">
+                <h2 class="card-slots-title">Cards</h2>
+                <div class="card-slots" id="cardSlots">
+                    <!-- 5 card slots will be generated here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Game Status -->
+        <div class="game-status" id="gameStatus">
+            <div class="status-message" id="statusMessage"></div>
+            <button class="restart-btn" id="restartBtn">New Game</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/sound.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/grid.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/collision.js"></script>
+    <script src="js/drag-drop.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

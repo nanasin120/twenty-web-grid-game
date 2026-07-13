@@ -1,0 +1,109 @@
+/* Light Theme (Default) */
+:root {
+    --bg-primary: #f8f9fa;
+    --bg-secondary: #ffffff;
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --accent-color: #3498db;
+    --border-color: #bdc3c7;
+    --card-bg: #ecf0f1;
+    --card-slot-bg: #e8eef2;
+    --card-hover-bg: #d5dce0;
+    --card-active-bg: #c0c8ce;
+    --grid-bg: #ffffff;
+    --cell-empty-bg: #f0f3f7;
+    --cell-hover-bg: #e8eef2;
+    --highlight-bg: #ffeaa7;
+    --cleared-bg: #55efc4;
+    --modal-bg: #ffffff;
+    --hover-bg: #e8eef2;
+    
+    /* Card gradients */
+    --card-number-start: #3498db;
+    --card-number-end: #2980b9;
+    --card-modifier-start: #e74c3c;
+    --card-modifier-end: #c0392b;
+}
+
+/* Dark Theme */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #2d2d2d;
+        --text-primary: #ecf0f1;
+        --text-secondary: #bdc3c7;
+        --accent-color: #3498db;
+        --border-color: #404040;
+        --card-bg: #2d2d2d;
+        --card-slot-bg: #363636;
+        --card-hover-bg: #3d3d3d;
+        --card-active-bg: #4a4a4a;
+        --grid-bg: #262626;
+        --cell-empty-bg: #2d2d2d;
+        --cell-hover-bg: #363636;
+        --highlight-bg: #f39c12;
+        --cleared-bg: #27ae60;
+        --modal-bg: #2d2d2d;
+        --hover-bg: #363636;
+        
+        /* Card gradients */
+        --card-number-start: #3498db;
+        --card-number-end: #2980b9;
+        --card-modifier-start: #e74c3c;
+        --card-modifier-end: #c0392b;
+    }
+}
+
+/* Manual Dark Theme Toggle */
+body.dark-theme {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ecf0f1;
+    --text-secondary: #bdc3c7;
+    --accent-color: #3498db;
+    --border-color: #404040;
+    --card-bg: #2d2d2d;
+    --card-slot-bg: #363636;
+    --card-hover-bg: #3d3d3d;
+    --card-active-bg: #4a4a4a;
+    --grid-bg: #262626;
+    --cell-empty-bg: #2d2d2d;
+    --cell-hover-bg: #363636;
+    --highlight-bg: #f39c12;
+    --cleared-bg: #27ae60;
+    --modal-bg: #2d2d2d;
+    --hover-bg: #363636;
+    
+    /* Card gradients */
+    --card-number-start: #3498db;
+    --card-number-end: #2980b9;
+    --card-modifier-start: #e74c3c;
+    --card-modifier-end: #c0392b;
+}
+
+/* Manual Light Theme Toggle */
+body.light-theme {
+    --bg-primary: #f8f9fa;
+    --bg-secondary: #ffffff;
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --accent-color: #3498db;
+    --border-color: #bdc3c7;
+    --card-bg: #ecf0f1;
+    --card-slot-bg: #e8eef2;
+    --card-hover-bg: #d5dce0;
+    --card-active-bg: #c0c8ce;
+    --grid-bg: #ffffff;
+    --cell-empty-bg: #f0f3f7;
+    --cell-hover-bg: #e8eef2;
+    --highlight-bg: #ffeaa7;
+    --cleared-bg: #55efc4;
+    --modal-bg: #ffffff;
+    --hover-bg: #e8eef2;
+    
+    /* Card gradients */
+    --card-number-start: #3498db;
+    --card-number-end: #2980b9;
+    --card-modifier-start: #e74c3c;
+    --card-modifier-end: #c0392b;
+}
