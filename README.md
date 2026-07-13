@@ -2,6 +2,8 @@
 
 A modern, interactive 4x4 grid puzzle game built with pure HTML, CSS, and JavaScript.
 
+you can play here! https://nanasin120.github.io/twenty-web-grid-game/
+
 ## Game Overview
 
 **Twenty** is a strategic puzzle game where you:
