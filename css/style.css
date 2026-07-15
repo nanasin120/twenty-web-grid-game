@@ -364,6 +364,14 @@ body {
     color: white;
 }
 
+.dragged-card.positive {
+    border-color: #4CAF50;
+}
+
+.dragged-card.negative {
+    border-color: #FF6B6B;
+}
+
 /* Responsive Design */
 @media (max-width: 480px) {
     .container {
