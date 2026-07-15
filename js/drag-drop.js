@@ -96,9 +96,10 @@ class DragDropManager {
         this.draggedElement = document.createElement('div');
         this.draggedElement.className = 'dragged-card';
 
-        if (card === -1 || card === 1) {
+        if (card === -1 || card === 10) {
             this.draggedElement.classList.add('modifier');
-            this.draggedElement.textContent = card === 1 ? '+1' : '-1';
+            this.draggedElement.classList.add(card === 10 ? 'positive' : 'negative');
+            this.draggedElement.textContent = card === 10 ? '+1' : '-1';
         } else {
             this.draggedElement.classList.add('number');
             this.draggedElement.textContent = card;
@@ -196,16 +197,31 @@ class DragDropManager {
      */
     dropOnCell(card, cellIndex) {
         const currentCell = this.gridManager.getCell(cellIndex);
-        const isModifier = card === -1 || card === 1;
+        const isModifier = card === -1 || card === 10;
+        const currentIsModifier = currentCell === -1 || currentCell === 10;
+        const cardIsNumber = card >= 1 && card <= 9;
 
         if (currentCell === null) {
             // Empty cell - can place any card
             this.gridManager.setCell(cellIndex, card);
             this.cardManager.removeCard(this.draggedSlot);
             return true;
+        } else if (cardIsNumber && currentIsModifier) {
+            // Number card on modifier cell: replace modifier with number
+            this.gridManager.setCell(cellIndex, card);
+            this.cardManager.removeCard(this.draggedSlot);
+            soundManager.playPlace();
+            return true;
         } else if (isModifier) {
             // Modifier card on occupied cell
-            const newValue = currentCell + card;
+            if (currentIsModifier) {
+                soundManager.playInvalid();
+                this.gridManager.showInvalidAnimation(cellIndex);
+                return false;
+            }
+
+            const modifierValue = card === 10 ? 1 : -1;
+            const newValue = currentCell + modifierValue;
 
             // Validate: keep value between 1 and 9
             if (newValue < 1 || newValue > 9) {

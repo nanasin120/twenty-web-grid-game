@@ -6,8 +6,8 @@ class CardManager {
     constructor() {
         this.slots = [];
         this.numSlots = 4;
-        // 숫자: 1-9 (9개), -1 (2개), +1 (2개) = 더 많은 숫자 카드
-        this.cardTypes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, -1, 1]; // -1은 음수, 1은 양수
+        // 숫자: 1-9, -1 수정자, 10(+1 수정자)
+        this.cardTypes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, -1, 10];
         this.slotsElement = document.getElementById('cardSlots');
         this.initSlots();
         this.generateCards();
@@ -100,6 +100,11 @@ class CardManager {
                 cardElement.classList.add('modifier');
                 cardElement.classList.add('negative');
                 cardElement.textContent = '-1';
+            } else if (card === 10) {
+                // +1 카드 (양수 수정자)
+                cardElement.classList.add('modifier');
+                cardElement.classList.add('positive');
+                cardElement.textContent = '+1';
             } else if (card > 0 && card <= 9) {
                 // 일반 숫자 카드 (1-9)
                 cardElement.classList.add('number');

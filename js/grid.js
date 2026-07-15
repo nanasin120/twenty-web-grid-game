@@ -58,7 +58,11 @@ class GridManager {
 
         if (!cellElement) return;
 
-        cellElement.textContent = value !== null ? value : '';
+        if (value === 10) {
+            cellElement.textContent = '+1';
+        } else {
+            cellElement.textContent = value !== null ? value : '';
+        }
         cellElement.classList.remove('cleared', 'highlight');
 
         if (value === null) {
@@ -137,6 +141,9 @@ class GridManager {
         // 모든 칸이 채워져 있으면 합 확인
         const sum = indices.reduce((acc, index) => {
             const cell = this.cells[index];
+            if (cell === 10) {
+                return acc + 1;
+            }
             return acc + (cell !== null ? cell : 0);
         }, 0);
         return sum === 20;
