@@ -5,7 +5,7 @@
 class CardManager {
     constructor() {
         this.slots = [];
-        this.numSlots = 4;
+        this.numSlots = 5;
         // 숫자: 1-9, -1 수정자, 10(+1 수정자)
         this.cardTypes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, -1, 10];
         this.slotsElement = document.getElementById('cardSlots');
