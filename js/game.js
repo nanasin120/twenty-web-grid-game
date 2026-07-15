@@ -33,6 +33,8 @@ class GameManager {
      * Process card placement
      */
     processPlacement() {
+        if (this.gameOver) return;
+
         // Check for cleared lines
         const clearedLines = this.gridManager.getCheckedLines();
 
@@ -54,7 +56,7 @@ class GameManager {
             this.cardManager.refillAllEmptySlots();
         }
 
-        // Check game over condition
+        // Check game over condition after slight delay
         setTimeout(() => this.checkGameOver(), 500);
     }
 
@@ -77,41 +79,38 @@ class GameManager {
         const gridFull = this.gridManager.isCompleteFull();
         const numbersOnly = this.gridManager.isCompleteWithNumbersOnly();
         const hasCards = this.cardManager.hasAvailableCards();
+        const hasSpace = this.gridManager.hasAvailableSpace();
 
-        // Game over: grid full with only numbers (no modifiers)
+        // 게임 오버: 그리드가 꽉 찼고 숫자만 있음 (수정자 없음)
         if (gridFull && numbersOnly) {
-            this.endGame(false);
+            this.endGame(false, 'Grid is full with only numbers!');
             return;
         }
 
-        // Game continues if there are modifiers in grid or available cards
-        if (gridFull && !numbersOnly) {
-            // Grid full but has modifiers - can still potentially clear lines
+        // 게임 오버: 그리드가 꽉 찼고 남은 카드가 없음
+        if (gridFull && !hasCards) {
+            this.endGame(false, 'Grid is full and no cards left!');
             return;
         }
 
-        // If grid has space and cards available - game continues
-        if (this.gridManager.hasAvailableSpace() && hasCards) {
+        // 게임 오버: 그리드에 공간이 없고 카드가 없음
+        if (!hasSpace && !hasCards) {
+            this.endGame(false, 'No space and no cards left!');
             return;
-        }
-
-        // No space for new cards and no available cards
-        if (!this.gridManager.hasAvailableSpace() && !hasCards) {
-            this.endGame(false);
         }
     }
 
     /**
      * End game
      */
-    endGame(won = false) {
+    endGame(won = false, reason = '') {
         this.gameOver = true;
 
         soundManager.playGameOver();
 
         const statusMessage = document.getElementById('statusMessage');
         if (statusMessage) {
-            statusMessage.textContent = won ? 'You Won! 🎉' : 'Game Over 😢';
+            statusMessage.textContent = won ? 'You Won! 🎉' : `Game Over 😢\n${reason}`;
         }
 
         const gameStatus = document.getElementById('gameStatus');

@@ -99,7 +99,7 @@ class GridManager {
     isCompleteWithNumbersOnly() {
         return this.cells.every(cell => {
             if (cell === null) return false;
-            return cell !== -1 && cell !== 1; // -1 and +1 are modifiers
+            return cell !== -1 && (cell >= 1 && cell <= 9); // -1은 수정자, 1-9는 숫자
         });
     }
 
@@ -127,9 +127,14 @@ class GridManager {
     }
 
     /**
-     * Check if line is clear (sum = 20)
+     * Check if line is completely full and sums to 20
      */
     isLineClear(indices) {
+        // 먼저 라인의 모든 칸이 채워져 있는지 확인
+        const allFilled = indices.every(index => this.cells[index] !== null);
+        if (!allFilled) return false;
+
+        // 모든 칸이 채워져 있으면 합 확인
         const sum = indices.reduce((acc, index) => {
             const cell = this.cells[index];
             return acc + (cell !== null ? cell : 0);

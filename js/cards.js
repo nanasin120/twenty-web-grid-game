@@ -6,7 +6,8 @@ class CardManager {
     constructor() {
         this.slots = [];
         this.numSlots = 4;
-        this.cardTypes = [1, 2, 3, 4, 5, 6, 7, 8, 9, -1, 1]; // +1 appears as 1 (duplicate 1 for balance)
+        // 숫자: 1-9 (9개), -1 (2개), +1 (2개) = 더 많은 숫자 카드
+        this.cardTypes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, -1, 1]; // -1은 음수, 1은 양수
         this.slotsElement = document.getElementById('cardSlots');
         this.initSlots();
         this.generateCards();
@@ -94,11 +95,13 @@ class CardManager {
             const cardElement = document.createElement('div');
             cardElement.className = 'card';
             
-            if (card === -1 || card === 1) {
+            if (card === -1) {
+                // -1 카드 (음수 수정자)
                 cardElement.classList.add('modifier');
-                cardElement.classList.add(card === 1 ? 'positive' : 'negative');
-                cardElement.textContent = card === 1 ? '+1' : '-1';
-            } else {
+                cardElement.classList.add('negative');
+                cardElement.textContent = '-1';
+            } else if (card > 0 && card <= 9) {
+                // 일반 숫자 카드 (1-9)
                 cardElement.classList.add('number');
                 cardElement.textContent = card;
             }
